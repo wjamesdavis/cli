@@ -32,5 +32,47 @@ Input: Multiply
 
 Input: Exit
 """
+# import math library
+import math
 
+# create empty global list
+userInputs = []
+userOptions = {
+    "escape": ["STOP", "EXIT"],
+    "math": ["ADD", "MULTIPLY", "AVERAGE"]
+}
 
+# create global variables
+inputPrompt = "Please input a series of numbers. After each number press enter. When you finish type STOP... "
+choicePrompt = "Would you like to: ADD, MULTIPLY, AVERAGE, or EXIT? "
+goodbye = "You chose to EXIT. Self Destruct sequence initiated... "
+
+#function for taking input into a list
+def addToList():
+    print(inputPrompt)
+    userNum = ""
+    while userNum != userOptions["escape"][0]:
+        userNum = input()
+        if userNum != userOptions["escape"][0]:
+            userInputs.append(int(userNum))
+
+# function for math stuff
+def interact():
+    userChoice = ""
+    while userChoice != userOptions["escape"][1]:
+        print(choicePrompt)
+        userChoice = input()
+        if userChoice == userOptions["math"][0]:
+            print(sum(userInputs))
+        elif userChoice == userOptions["math"][1]:
+            print(math.prod(userInputs))
+        elif userChoice == userOptions["math"][2]:
+            print(sum(userInputs)/len(userInputs))
+        elif userChoice == userOptions["escape"][1]:
+            print(goodbye)
+        else:
+            print(f"Unknown input: {userChoice}")
+
+# running functions
+addToList()
+interact()
